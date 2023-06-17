@@ -1,4 +1,4 @@
-# review-reminder
+# review-reminder-action
 
 A reminder that add labels and mention reviewers when pull requests become stale.
 
@@ -38,7 +38,7 @@ jobs:
         run: pnpm install --no-frozen-lockfile
 
       - name: Check last updated date
-        uses: thundermiracle/review-reminder@v1
+        uses: thundermiracle/review-reminder-action@v1
         env:
           stale-days: 2
 ```

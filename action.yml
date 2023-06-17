@@ -1,5 +1,9 @@
-name: 'review-reminder'
+name: 'review-reminder-action'
 description: 'A reminder that add labels and mention reviewers when pull requests become stale'
+branding:
+  icon: 'bell'
+  color: 'blue'
+author: thundermiracle
 inputs:
   stale-days:
     description: 'The number of days after which a pull request is considered stale'
