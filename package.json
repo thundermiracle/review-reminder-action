@@ -11,7 +11,8 @@
     "test": "pnpm lint && vitest run",
     "build": "tsup",
     "package": "ncc build --source-map --license licenses.txt",
-    "all": "pnpm build && pnpm format && pnpm test && pnpm package"
+    "all": "pnpm build && pnpm format && pnpm test && pnpm package",
+    "cs:version": "changeset version"
   },
   "dependencies": {
     "@actions/core": "^1.10.0",
