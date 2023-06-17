@@ -1,0 +1,34 @@
+name: 'review-reminder'
+description: 'A reminder that add labels and mention reviewers when pull requests become stale'
+inputs:
+  stale-days:
+    description: 'The number of days after which a pull request is considered stale'
+    required: false
+    default: "2"
+  base-branch:
+    description: 'The base branch of the pull request'
+    required: false
+    default: ""
+  reminder-labels:
+    description: 'The labels that indicate a pull request needs review'
+    required: false
+    default: "[]"
+  send-reminder-comment:
+    description: 'Send comment with mentions for pull request reviewers when the pull request needs review'
+    required: false
+    default: "true"
+  only-business-days:
+    description: 'Only calculate business days when calculating staleness'
+    required: false
+    default: "true"
+  ignore-draft:
+    description: 'Skip draft pull requests'
+    required: false
+    default: "true"
+  token:
+    description: 'https://docs.github.com/en/actions/security-guides/automatic-token-authentication#about-the-github_token-secret'
+    required: false
+    default: ${{ github.token }}
+runs:
+  using: 'node16'
+  main: 'dist/index.js'
