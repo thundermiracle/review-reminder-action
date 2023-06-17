@@ -1,6 +1,5 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": [
-    "local>thundermiracle/.github:renovate-config"
-  ]
+  "extends": ["github>thundermiracle/.github"],
+  "automerge": true
 }
