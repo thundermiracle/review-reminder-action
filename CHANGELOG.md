@@ -1,5 +1,11 @@
 # review-reminder-action
 
+## 1.0.3
+
+### Patch Changes
+
+- [#10](https://github.com/thundermiracle/review-reminder-action/pull/10) [`c2f2797`](https://github.com/thundermiracle/review-reminder-action/commit/c2f2797025b9e659ffa392f097b28cf92f8a5679) Thanks [@thundermiracle](https://github.com/thundermiracle)! - fix typo
+
 ## 1.0.2
 
 ### Patch Changes
