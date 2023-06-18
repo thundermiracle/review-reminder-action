@@ -1,5 +1,11 @@
 # review-reminder-action
 
+## 1.0.2
+
+### Patch Changes
+
+- [#8](https://github.com/thundermiracle/review-reminder-action/pull/8) [`511c723`](https://github.com/thundermiracle/review-reminder-action/commit/511c723ada8763eacad36c08fecf57be974f5709) Thanks [@thundermiracle](https://github.com/thundermiracle)! - ci: add tag automatically in CI
+
 ## 1.0.1
 
 ### Patch Changes
