@@ -35,6 +35,6 @@ jobs:
           commit: true
           title: 'chore(release): release package'
           version: pnpm cs:version
-          publish: pnpmp cs:tag
+          publish: pnpm cs:tag
         env:
           GITHUB_TOKEN: ${{ secrets.PAT_GITHUB }}
