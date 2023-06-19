@@ -31433,19 +31433,20 @@ var main = async () => {
   });
   core.info(`Total pull requests: ${pullRequests.length}`);
   for (const pr of pullRequests) {
+    core.info(`PR number: ${pr.number}`);
     if (ignoreDraft && pr.draft) {
       core.info(`Skip draft PR: ${pr.number}`);
       continue;
     }
     core.info(`PR updated date: ${pr.updated_at}`);
-    core.info(`PR current date: ${(/* @__PURE__ */ new Date()).toLocaleString()}`);
-    if (_chunkAHUYOBOGjs.isStalePr.call(void 0, 
+    core.info(`PR current date: ${/* @__PURE__ */ new Date()}`);
+    if (!_chunkAHUYOBOGjs.isStalePr.call(void 0, 
       new Date(pr.updated_at),
       /* @__PURE__ */ new Date(),
       Number(staleDays),
       onlyBusinessDays
     )) {
-      core.info(`Stale PR: ${pr.number}`);
+      core.info(`Active PR: ${pr.number}`);
       continue;
     }
     if (reminderLabels.length) {
@@ -31466,7 +31467,7 @@ var main = async () => {
       const reviewers = _optionalChain([pr, 'access', _3 => _3.requested_reviewers, 'optionalAccess', _4 => _4.filter, 'call', _5 => _5((reviewer) => !reviewersWhoReviewed.includes(reviewer.login)), 'access', _6 => _6.map, 'call', _7 => _7((reviewer) => `@${reviewer.login}`), 'access', _8 => _8.join, 'call', _9 => _9(" ")]);
       core.info(`Reviewers who haven't reviewed: ${reviewers}`);
       if (_optionalChain([reviewers, 'optionalAccess', _10 => _10.trim, 'call', _11 => _11()])) {
-        const comment = `${reviewers} Please review it again.`;
+        const comment = `${reviewers} <br />Please review it again.`;
         await octokit.rest.issues.createComment({
           ...repo,
           issue_number: pr.number,
