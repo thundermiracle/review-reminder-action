@@ -22,24 +22,9 @@ jobs:
       pull-requests: write
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: enable corepack
-        run: corepack enable
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18
-          cache: 'pnpm'
-
-      - name: Install dependencies
-        run: pnpm install --no-frozen-lockfile
-
-      - name: Check last updated date
+      - name: Run review reminder
         uses: thundermiracle/review-reminder-action@v1
-        env:
+        with:
           stale-days: 2
 ```
 
