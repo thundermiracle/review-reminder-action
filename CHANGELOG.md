@@ -1,5 +1,13 @@
 # review-reminder-action
 
+## 1.0.4
+
+### Patch Changes
+
+- [#12](https://github.com/thundermiracle/review-reminder-action/pull/12) [`9baba53`](https://github.com/thundermiracle/review-reminder-action/commit/9baba5388f8f8b3d735ec112ad77544fea3bb2f5) Thanks [@thundermiracle](https://github.com/thundermiracle)! - docs: fix example code in readme
+
+- [#13](https://github.com/thundermiracle/review-reminder-action/pull/13) [`d039c4d`](https://github.com/thundermiracle/review-reminder-action/commit/d039c4d12440e270e1527575650368a6928f8d93) Thanks [@thundermiracle](https://github.com/thundermiracle)! - fix: skip operation when pr is not stale
+
 ## 1.0.3
 
 ### Patch Changes
