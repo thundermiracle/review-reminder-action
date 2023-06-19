@@ -43,6 +43,8 @@ const main = async () => {
   core.info(`Total pull requests: ${pullRequests.length}`);
 
   for (const pr of pullRequests) {
+    core.info(`PR number: ${pr.number}`);
+
     // skip draft pr
     if (ignoreDraft && pr.draft) {
       core.info(`Skip draft PR: ${pr.number}`);
@@ -51,16 +53,16 @@ const main = async () => {
 
     // get pr updated date
     core.info(`PR updated date: ${pr.updated_at}`);
-    core.info(`PR current date: ${new Date().toLocaleString()}`);
+    core.info(`PR current date: ${new Date()}`);
     if (
-      isStalePr(
+      !isStalePr(
         new Date(pr.updated_at),
         new Date(),
         Number(staleDays),
         onlyBusinessDays,
       )
     ) {
-      core.info(`Stale PR: ${pr.number}`);
+      core.info(`Active PR: ${pr.number}`);
       continue;
     }
 
@@ -90,7 +92,7 @@ const main = async () => {
       core.info(`Reviewers who haven't reviewed: ${reviewers}`);
 
       if (reviewers?.trim()) {
-        const comment = `${reviewers} Please review it again.`;
+        const comment = `${reviewers} <br />Please review it again.`;
         await octokit.rest.issues.createComment({
           ...repo,
           issue_number: pr.number,
