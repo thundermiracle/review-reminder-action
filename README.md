@@ -26,6 +26,8 @@ jobs:
         uses: thundermiracle/review-reminder-action@v1
         with:
           stale-days: 2
+          reminder-labels: |-
+            need review
 ```
 
 ## Configuration
