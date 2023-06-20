@@ -31409,6 +31409,7 @@ var main = async () => {
   const sendReminderComment = core.getBooleanInput("send-reminder-comment");
   const onlyBusinessDays = core.getBooleanInput("only-business-days");
   const ignoreDraft = core.getBooleanInput("ignore-draft");
+  const skipApproveCount = Number.parseInt(core.getInput("skip-approve-count"), 10) || 0;
   const token = core.getInput("token");
   core.info(`stale-days: ${staleDays}`);
   core.info(`base-branch: ${baseBranch}`);
@@ -31416,6 +31417,7 @@ var main = async () => {
   core.info(`send-reminder-comment: ${sendReminderComment}`);
   core.info(`only-business-days: ${onlyBusinessDays}`);
   core.info(`ignore-draft: ${ignoreDraft}`);
+  core.info(`skip-approve-count: ${skipApproveCount}`);
   const {
     context: { repo }
   } = github;
@@ -31449,14 +31451,6 @@ var main = async () => {
       core.info(`Active PR: ${pr.number}`);
       continue;
     }
-    if (reminderLabels.length) {
-      core.info(`Add labels: ${reminderLabels}`);
-      await octokit.rest.issues.addLabels({
-        ...repo,
-        issue_number: pr.number,
-        labels: reminderLabels
-      });
-    }
     if (sendReminderComment) {
       const { data: reviews } = await octokit.rest.pulls.listReviews({
         ...repo,
@@ -31464,6 +31458,12 @@ var main = async () => {
       });
       const reviewersWhoReviewed = reviews.map((review) => _optionalChain([review, 'access', _ => _.user, 'optionalAccess', _2 => _2.login]));
       core.info(`Reviewers who reviewed: ${reviewersWhoReviewed}`);
+      if (skipApproveCount > 0 && reviews.length >= skipApproveCount) {
+        core.info(
+          `Skip reminder comment approve count(${reviews.length}) is enough: ${pr.number}`
+        );
+        continue;
+      }
       const reviewers = _optionalChain([pr, 'access', _3 => _3.requested_reviewers, 'optionalAccess', _4 => _4.filter, 'call', _5 => _5((reviewer) => !reviewersWhoReviewed.includes(reviewer.login)), 'access', _6 => _6.map, 'call', _7 => _7((reviewer) => `@${reviewer.login}`), 'access', _8 => _8.join, 'call', _9 => _9(" ")]);
       core.info(`Reviewers who haven't reviewed: ${reviewers}`);
       if (_optionalChain([reviewers, 'optionalAccess', _10 => _10.trim, 'call', _11 => _11()])) {
@@ -31474,6 +31474,14 @@ var main = async () => {
           body: comment
         });
       }
+    }
+    if (reminderLabels.length) {
+      core.info(`Add labels: ${reminderLabels}`);
+      await octokit.rest.issues.addLabels({
+        ...repo,
+        issue_number: pr.number,
+        labels: reminderLabels
+      });
     }
   }
 };
