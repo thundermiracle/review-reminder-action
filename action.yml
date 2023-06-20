@@ -29,6 +29,10 @@ inputs:
     description: 'Skip draft pull requests'
     required: false
     default: "true"
+  skip-approve-count:
+    description: 'Skip reminder when pull request has been approved by at least this many reviewers'
+    required: false
+    default: "1"
   token:
     description: 'https://docs.github.com/en/actions/security-guides/automatic-token-authentication#about-the-github_token-secret'
     required: false

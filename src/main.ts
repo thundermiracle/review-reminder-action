@@ -11,6 +11,8 @@ const main = async () => {
   const sendReminderComment = core.getBooleanInput('send-reminder-comment');
   const onlyBusinessDays = core.getBooleanInput('only-business-days');
   const ignoreDraft = core.getBooleanInput('ignore-draft');
+  const skipApproveCount =
+    Number.parseInt(core.getInput('skip-approve-count'), 10) || 0;
   const token = core.getInput('token');
 
   // log all inputs
@@ -20,6 +22,7 @@ const main = async () => {
   core.info(`send-reminder-comment: ${sendReminderComment}`);
   core.info(`only-business-days: ${onlyBusinessDays}`);
   core.info(`ignore-draft: ${ignoreDraft}`);
+  core.info(`skip-approve-count: ${skipApproveCount}`);
 
   const {
     context: { repo },
@@ -66,16 +69,6 @@ const main = async () => {
       continue;
     }
 
-    // add labels
-    if (reminderLabels.length) {
-      core.info(`Add labels: ${reminderLabels}`);
-      await octokit.rest.issues.addLabels({
-        ...repo,
-        issue_number: pr.number,
-        labels: reminderLabels,
-      });
-    }
-
     // mention reviewers who haven't reviewed
     if (sendReminderComment) {
       const { data: reviews } = await octokit.rest.pulls.listReviews({
@@ -84,6 +77,13 @@ const main = async () => {
       });
       const reviewersWhoReviewed = reviews.map((review) => review.user?.login);
       core.info(`Reviewers who reviewed: ${reviewersWhoReviewed}`);
+
+      if (skipApproveCount > 0 && reviews.length >= skipApproveCount) {
+        core.info(
+          `Skip reminder comment approve count(${reviews.length}) is enough: ${pr.number}`,
+        );
+        continue;
+      }
 
       const reviewers = pr.requested_reviewers
         ?.filter((reviewer) => !reviewersWhoReviewed.includes(reviewer.login))
@@ -99,6 +99,16 @@ const main = async () => {
           body: comment,
         });
       }
+    }
+
+    // add labels
+    if (reminderLabels.length) {
+      core.info(`Add labels: ${reminderLabels}`);
+      await octokit.rest.issues.addLabels({
+        ...repo,
+        issue_number: pr.number,
+        labels: reminderLabels,
+      });
     }
   }
 };
