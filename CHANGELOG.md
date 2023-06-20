@@ -1,5 +1,13 @@
 # review-reminder-action
 
+## 1.0.5
+
+### Patch Changes
+
+- [#15](https://github.com/thundermiracle/review-reminder-action/pull/15) [`c2e07b3`](https://github.com/thundermiracle/review-reminder-action/commit/c2e07b35e7f63f0e48dac7f353bba4c402b68246) Thanks [@thundermiracle](https://github.com/thundermiracle)! - ci: add workflow to auto retag when tag was pushed
+
+- [#18](https://github.com/thundermiracle/review-reminder-action/pull/18) [`3033ee6`](https://github.com/thundermiracle/review-reminder-action/commit/3033ee6aa37f98f294e632945ab39634c6d61118) Thanks [@thundermiracle](https://github.com/thundermiracle)! - feat: add option skip-approve-count
+
 ## 1.0.4
 
 ### Patch Changes
