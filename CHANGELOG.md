@@ -1,5 +1,15 @@
 # review-reminder-action
 
+## 1.0.6
+
+### Patch Changes
+
+- [#23](https://github.com/thundermiracle/review-reminder-action/pull/23) [`427d0c2`](https://github.com/thundermiracle/review-reminder-action/commit/427d0c2b2d40f1547637526a6eb7cce10f23152a) Thanks [@thundermiracle](https://github.com/thundermiracle)! - skip test in pr created by changeset bot
+
+- [#22](https://github.com/thundermiracle/review-reminder-action/pull/22) [`3457059`](https://github.com/thundermiracle/review-reminder-action/commit/34570591d0cc12e97286790f1dcb817342e31119) Thanks [@thundermiracle](https://github.com/thundermiracle)! - ci: check changeset status in every pr
+
+- [#20](https://github.com/thundermiracle/review-reminder-action/pull/20) [`5ed1ffe`](https://github.com/thundermiracle/review-reminder-action/commit/5ed1ffe946bc3fcc35072448fee52f4bff8bebc9) Thanks [@thundermiracle](https://github.com/thundermiracle)! - fix: filter reviewers amount by approved status
+
 ## 1.0.5
 
 ### Patch Changes
