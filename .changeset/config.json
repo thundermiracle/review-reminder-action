@@ -10,5 +10,9 @@
   "access": "restricted",
   "baseBranch": "origin/main",
   "updateInternalDependencies": "patch",
-  "ignore": []
+  "ignore": [],
+  "___experimentalUnsafeOptions_WILL_CHANGE_IN_PATCH": {
+    "updateInternalDependents": "always"
+  },
+  "snapshot": { "useCalculatedVersion": true }
 }
