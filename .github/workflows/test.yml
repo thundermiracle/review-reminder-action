@@ -2,6 +2,9 @@ name: CI
 
 on:
   pull_request:
+    # skip running if pr created by changeset bot
+    branches-ignore:
+      - 'changset-release/**'
   push:
     branches:
       - main
