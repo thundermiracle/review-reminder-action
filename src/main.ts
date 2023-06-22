@@ -75,8 +75,10 @@ const main = async () => {
         ...repo,
         pull_number: pr.number,
       });
-      const reviewersWhoReviewed = reviews.map((review) => review.user?.login);
-      core.info(`Reviewers who reviewed: ${reviewersWhoReviewed}`);
+      const reviewersWhoApproved = reviews
+        .filter((review) => review.state === 'APPROVED')
+        .map((review) => review.user?.login);
+      core.info(`Reviewers who reviewed & approved: ${reviewersWhoApproved}`);
 
       if (skipApproveCount > 0 && reviews.length >= skipApproveCount) {
         core.info(
@@ -86,7 +88,7 @@ const main = async () => {
       }
 
       const reviewers = pr.requested_reviewers
-        ?.filter((reviewer) => !reviewersWhoReviewed.includes(reviewer.login))
+        ?.filter((reviewer) => !reviewersWhoApproved.includes(reviewer.login))
         .map((reviewer) => `@${reviewer.login}`)
         .join(' ');
       core.info(`Reviewers who haven't reviewed: ${reviewers}`);
