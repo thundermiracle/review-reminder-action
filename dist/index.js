@@ -31456,17 +31456,17 @@ var main = async () => {
         ...repo,
         pull_number: pr.number
       });
-      const reviewersWhoReviewed = reviews.map((review) => _optionalChain([review, 'access', _ => _.user, 'optionalAccess', _2 => _2.login]));
-      core.info(`Reviewers who reviewed: ${reviewersWhoReviewed}`);
-      if (skipApproveCount > 0 && reviews.length >= skipApproveCount) {
+      const reviewersWhoApproved = reviews.filter((review) => review.state === "APPROVED").map((review) => _optionalChain([review, 'access', _ => _.user, 'optionalAccess', _2 => _2.login]));
+      core.info(`Reviewers who reviewed & approved: ${reviewersWhoApproved}`);
+      if (skipApproveCount > 0 && reviewersWhoApproved.length >= skipApproveCount) {
         core.info(
           `Skip reminder comment approve count(${reviews.length}) is enough: ${pr.number}`
         );
         continue;
       }
-      const reviewers = _optionalChain([pr, 'access', _3 => _3.requested_reviewers, 'optionalAccess', _4 => _4.filter, 'call', _5 => _5((reviewer) => !reviewersWhoReviewed.includes(reviewer.login)), 'access', _6 => _6.map, 'call', _7 => _7((reviewer) => `@${reviewer.login}`), 'access', _8 => _8.join, 'call', _9 => _9(" ")]);
+      const reviewers = _optionalChain([pr, 'access', _3 => _3.requested_reviewers, 'optionalAccess', _4 => _4.filter, 'call', _5 => _5((reviewer) => !reviewersWhoApproved.includes(reviewer.login)), 'access', _6 => _6.map, 'call', _7 => _7((reviewer) => `@${reviewer.login}`), 'access', _8 => _8.concat, 'call', _9 => _9(_optionalChain([pr, 'access', _10 => _10.requested_teams, 'optionalAccess', _11 => _11.map, 'call', _12 => _12((team) => `@${team.name}`)]) || []), 'access', _13 => _13.join, 'call', _14 => _14(" ")]);
       core.info(`Reviewers who haven't reviewed: ${reviewers}`);
-      if (_optionalChain([reviewers, 'optionalAccess', _10 => _10.trim, 'call', _11 => _11()])) {
+      if (_optionalChain([reviewers, 'optionalAccess', _15 => _15.trim, 'call', _16 => _16()])) {
         const comment = `${reviewers} <br />Please review it again.`;
         await octokit.rest.issues.createComment({
           ...repo,

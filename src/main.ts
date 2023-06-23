@@ -80,7 +80,10 @@ const main = async () => {
         .map((review) => review.user?.login);
       core.info(`Reviewers who reviewed & approved: ${reviewersWhoApproved}`);
 
-      if (skipApproveCount > 0 && reviews.length >= skipApproveCount) {
+      if (
+        skipApproveCount > 0 &&
+        reviewersWhoApproved.length >= skipApproveCount
+      ) {
         core.info(
           `Skip reminder comment approve count(${reviews.length}) is enough: ${pr.number}`,
         );
