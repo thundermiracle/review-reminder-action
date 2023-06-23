@@ -4,7 +4,7 @@ on:
   pull_request:
     # skip running if pr created by changeset bot
     branches-ignore:
-      - 'changset-release/**'
+      - changeset-release/main
   push:
     branches:
       - main
