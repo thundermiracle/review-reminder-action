@@ -87,9 +87,11 @@ const main = async () => {
         continue;
       }
 
+      // get reviewers and teams who haven't reviewed
       const reviewers = pr.requested_reviewers
         ?.filter((reviewer) => !reviewersWhoApproved.includes(reviewer.login))
         .map((reviewer) => `@${reviewer.login}`)
+        .concat(pr.requested_teams?.map((team) => `@${team.name}`) || [])
         .join(' ');
       core.info(`Reviewers who haven't reviewed: ${reviewers}`);
 
