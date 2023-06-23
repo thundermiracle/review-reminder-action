@@ -1,5 +1,17 @@
 # review-reminder-action
 
+## 1.0.7
+
+### Patch Changes
+
+- [#26](https://github.com/thundermiracle/review-reminder-action/pull/26) [`beb3ff4`](https://github.com/thundermiracle/review-reminder-action/commit/beb3ff4d6b23416f725a5a5cea470d2c9e23800b) Thanks [@thundermiracle](https://github.com/thundermiracle)! - fix: mention teams which are in the review list
+
+- [#28](https://github.com/thundermiracle/review-reminder-action/pull/28) [`2ca1e8b`](https://github.com/thundermiracle/review-reminder-action/commit/2ca1e8ba4bb69b01a28f0873dceebd2ee7d9705b) Thanks [@thundermiracle](https://github.com/thundermiracle)! - ci: ignore pr created by changeset bot
+
+- [#30](https://github.com/thundermiracle/review-reminder-action/pull/30) [`40aba5c`](https://github.com/thundermiracle/review-reminder-action/commit/40aba5c5b558e775f8c7a292965f4acb38a28fb1) Thanks [@thundermiracle](https://github.com/thundermiracle)! - fix: ignore test for pr opened by changeset bot
+
+- [#29](https://github.com/thundermiracle/review-reminder-action/pull/29) [`0ebbb7d`](https://github.com/thundermiracle/review-reminder-action/commit/0ebbb7d726088cd15e6d4e9b9d059b78952aa9c7) Thanks [@thundermiracle](https://github.com/thundermiracle)! - fix approved reviewers count bug
+
 ## 1.0.6
 
 ### Patch Changes
