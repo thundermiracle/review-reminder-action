@@ -94,7 +94,11 @@ const main = async () => {
       const reviewers = pr.requested_reviewers
         ?.filter((reviewer) => !reviewersWhoApproved.includes(reviewer.login))
         .map((reviewer) => `@${reviewer.login}`)
-        .concat(pr.requested_teams?.map((team) => `@${team.name}`) || [])
+        // mentions teams with org/team-slug
+        .concat(
+          pr.requested_teams?.map((team) => `@${repo.owner}/${team.slug}`) ||
+            [],
+        )
         .join(' ');
       core.info(`Reviewers who haven't reviewed: ${reviewers}`);
 

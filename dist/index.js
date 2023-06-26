@@ -31464,7 +31464,9 @@ var main = async () => {
         );
         continue;
       }
-      const reviewers = _optionalChain([pr, 'access', _3 => _3.requested_reviewers, 'optionalAccess', _4 => _4.filter, 'call', _5 => _5((reviewer) => !reviewersWhoApproved.includes(reviewer.login)), 'access', _6 => _6.map, 'call', _7 => _7((reviewer) => `@${reviewer.login}`), 'access', _8 => _8.concat, 'call', _9 => _9(_optionalChain([pr, 'access', _10 => _10.requested_teams, 'optionalAccess', _11 => _11.map, 'call', _12 => _12((team) => `@${team.name}`)]) || []), 'access', _13 => _13.join, 'call', _14 => _14(" ")]);
+      const reviewers = _optionalChain([pr, 'access', _3 => _3.requested_reviewers, 'optionalAccess', _4 => _4.filter, 'call', _5 => _5((reviewer) => !reviewersWhoApproved.includes(reviewer.login)), 'access', _6 => _6.map, 'call', _7 => _7((reviewer) => `@${reviewer.login}`), 'access', _8 => _8.concat, 'call', _9 => _9(
+        _optionalChain([pr, 'access', _10 => _10.requested_teams, 'optionalAccess', _11 => _11.map, 'call', _12 => _12((team) => `@${repo.owner}/${team.slug}`)]) || []
+      ), 'access', _13 => _13.join, 'call', _14 => _14(" ")]);
       core.info(`Reviewers who haven't reviewed: ${reviewers}`);
       if (_optionalChain([reviewers, 'optionalAccess', _15 => _15.trim, 'call', _16 => _16()])) {
         const comment = `${reviewers} <br />Please review it again.`;
