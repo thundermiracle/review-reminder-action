@@ -1,5 +1,11 @@
 # review-reminder-action
 
+## 1.0.8
+
+### Patch Changes
+
+- [#32](https://github.com/thundermiracle/review-reminder-action/pull/32) [`22a8133`](https://github.com/thundermiracle/review-reminder-action/commit/22a8133eedf1a9531b50eca1aa1ed0190d22df8e) Thanks [@thundermiracle](https://github.com/thundermiracle)! - fix: mention teams with repo.owner
+
 ## 1.0.7
 
 ### Patch Changes
