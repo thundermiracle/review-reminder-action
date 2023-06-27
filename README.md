@@ -2,6 +2,10 @@
 
 A reminder that add labels and mention reviewers when pull requests become stale.
 
+## Created from the following template
+
+[advanced-typescript-action](https://github.com/thundermiracle/advanced-typescript-action)
+
 ## Usage
 
 1. Create `.github/workflows/review-reminder.yml` in your repository.
