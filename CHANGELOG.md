@@ -1,5 +1,11 @@
 # review-reminder-action
 
+## 1.0.9
+
+### Patch Changes
+
+- [#36](https://github.com/thundermiracle/review-reminder-action/pull/36) [`224d83b`](https://github.com/thundermiracle/review-reminder-action/commit/224d83b90c76ac597776c79ba1f63539f0bc2795) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `eslint` to `^8.57.0`.
+
 ## 1.0.8
 
 ### Patch Changes
